@@ -1,0 +1,92 @@
+﻿<Window x:Class="Launcher.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        mc:Ignorable="d"
+        Title="KarlsonLoader Settings" Height="412" Width="370" WindowStyle="None" Background="#333" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Initialized="Window_Initialized">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FF292929"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF777777"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF313131"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF777777"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF252525"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF555555"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FF555555"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FF777777"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FFCCCCCC"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                <!-- ADDED: -->
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid x:Name="MainGrid" Visibility="Visible">
+            <Label Content="KarlsonLoader Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="35" Margin="0,-5,0,0" Width="370" Height="62" HorizontalContentAlignment="Center"/>
+            <Button x:Name="OpenModsFolder_Button" Content="Open Mods Folder" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Click="OpenModsFolder_Click" Style="{DynamicResource ButtonStyle1}"/>
+            <Button x:Name="EditKarlsonSettings_Button" Content="Edit Karlson Settings" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Click="Button_Click" Style="{DynamicResource ButtonStyle1}"/>
+            <Button x:Name="EditConfig_Button" Content="Edit Config" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Click="Button_Click_1" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Content="Change Karlson Path" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Click="Button_Click_4" Style="{DynamicResource ButtonStyle1}"/>
+            <Button x:Name="Download_Button" Content="Check/Update Launcher (this app)" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Click="Button_Click_5" Style="{DynamicResource ButtonStyle1}" IsEnabled="False"/>
+            <Button Content="Launch Karlson (no mods) &amp; Exit" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Style="{DynamicResource ButtonStyle1}" Click="Button_Click_6"/>
+            <Button Content="Launch KarlsonLoader without file checks" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Width="350" Height="34" Foreground="White" FontSize="18" Style="{DynamicResource ButtonStyle1}" Click="Button_Click_7"/>
+            <Button Content="Exit Settings &amp; Launch" HorizontalAlignment="Left" Margin="10,330,0,0" Width="350" Foreground="White" FontSize="18" Height="34" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Click="Button_Click_8"/>
+            <Button Content="Exit Settings" HorizontalAlignment="Left" Margin="10,369,0,0" Width="350" Foreground="White" FontSize="18" Height="34" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle1}" Click="Button_Click_9"/>
+        </Grid>
+
+        <Grid x:Name="ConfigGrid" Visibility="Collapsed">
+            <Label Content="KarlsonLoader Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="35" Margin="0,-5,0,0" Width="370" Height="62" HorizontalContentAlignment="Center"/>
+            <Label Content="Edit Config" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="24" Margin="0,38,0,0" Width="370" Height="46" HorizontalContentAlignment="Center"/>
+            <CheckBox x:Name="Config_ShowConsole" Content="Show Console" HorizontalAlignment="Left" Margin="57,137,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Height="30" Width="276"/>
+            <CheckBox x:Name="Config_UnityLog" Content="Show Unity Log" HorizontalAlignment="Left" Margin="57,172,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Height="30" Width="276"/>
+            <CheckBox x:Name="Config_LogFile" Content="Log Console To File" HorizontalAlignment="Left" Margin="57,207,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" VerticalContentAlignment="Center" Height="30" Width="276"/>
+            <Button Content="Cancel" HorizontalAlignment="Left" Margin="10,329,0,0" Width="350" Foreground="White" FontSize="18" Height="34" VerticalAlignment="Top" Click="Button_Click_2" Style="{DynamicResource ButtonStyle1}"/>
+            <Button Content="Save Config" HorizontalAlignment="Left" Margin="10,368,0,0" Width="350" Foreground="White" FontSize="18" Height="34" VerticalAlignment="Top" Click="Button_Click_3" Style="{DynamicResource ButtonStyle1}"/>
+        </Grid>
+    </Grid>
+</Window>

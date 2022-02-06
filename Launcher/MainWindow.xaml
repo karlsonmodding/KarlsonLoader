@@ -1,0 +1,13 @@
+﻿<Window x:Class="Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        mc:Ignorable="d"
+        Title="KarlsonLoader" Height="180" Width="370" WindowStyle="None" Background="#333" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid MouseDown="Grid_MouseDown">
+        <Label Content="KarlsonLoader" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" FontSize="56" Margin="0,-10,0,0" Width="370" Height="83" HorizontalContentAlignment="Center"/>
+        <Label Name="Status" Content="Please wait&#x0a;Loading.." HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="white" Margin="-1,64,-1,0" FontSize="25" Width="372" Height="116" HorizontalContentAlignment="Center"/>
+    </Grid>
+</Window>
